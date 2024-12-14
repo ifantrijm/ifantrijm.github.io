@@ -1,0 +1,197 @@
+:root {
+    --mainColor : #252734;
+    --secondaryColor : #333646;
+    --acsentColor : #FF9100;
+}
+
+body {
+    background-color: var(--mainColor);
+    min-height: 900px;
+    font-family: sans-serif;  
+    scroll-behavior: smooth;
+}
+
+section h1 {
+    color: white;
+    font-size: 2.5rem;
+}
+
+.row {
+    
+}
+
+/* nav */
+
+
+.nav-link.active {
+    color: var(--acsentColor) !important;
+    font-weight: 700;
+}
+
+.nav-dark {
+    background-color: var(--secondaryColor)!important;
+    z-index: 100;
+    transition: .3s;
+}
+/* end nav */
+
+/* hero */
+
+.color-acsent {
+    color: var(--acsentColor);
+}
+
+#hero {
+    color: white;
+    min-height: 100vh;
+    padding-top: 75px;
+    /* background-color: aqua; */
+}    
+
+#hero h1 {
+    font-size: 3rem;
+}
+#hero h2 {
+    font-weight: 300;
+}
+#hero p {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+#hero img {
+    /* position: absolute; */
+    /* z-index: -200; */
+}
+
+.btn-custom1 {
+    background-color: var(--acsentColor);
+    text-align: center;
+    color: white;
+    min-width: 150px; 
+    height: 45px;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.btn-custom1:hover {
+    box-shadow: 0 0 5px rgba(255, 166, 0, 0.8);
+}
+
+.btn .bi {
+    font-weight: 300;
+}
+
+.social-icon .bi {
+    font-size: 20px;
+    margin-right: .7rem;
+}
+
+.social-icon-footer .bi{
+    color: white;
+    font-size: 20px;
+    margin-right: .7rem;
+}
+/* end hero */
+
+
+/* about */
+hr {
+    width: 35%;
+    height: 5px;
+    color: var(--acsentColor);
+    margin: 0 auto;
+    opacity: 100%;
+}
+
+#about {
+    min-height: 300px;
+    width: 100%;
+    background-color: var(--secondaryColor);
+    color: white;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    margin-bottom: 80px;
+}
+/* end about */
+
+
+/* sklil */
+ #skill {
+    min-height: 600px;
+    width: 100%;
+    color: white;
+ }
+
+ #skill img {
+    width: 15%;
+    margin: 10px;
+ }
+
+
+
+ #skill .card {
+    background-color: #414558;
+    /* height: 340px; */
+    color: white;
+ }
+
+ #skill .card:hover {
+    background-color: var(--acsentColor);
+ }
+
+ .skill-content {
+    margin-top: 120px;
+ }
+
+ .skill-content .image {
+    width: 90% !important;
+    /* max-width: 300px !important; */
+ }
+
+ .skill .bi {
+    font-size: 50px;
+    width: 50%;
+ }
+/* end sklil */
+
+
+/* sertifikat */
+#sertifikat {
+    margin-top: -170px;
+    padding-top: 270px;
+    padding-bottom: 80px;
+    background-color: var(--secondaryColor);
+}
+#sertifikat .bi{
+    font-size: 20px;
+    color: white;
+}
+
+#sertifikat p, a {
+    color: white;
+    text-decoration: none;
+}
+
+#sertifikat img {
+    width: 49%;
+    padding: 10px;
+}
+/* end sertifikat */
+
+
+/* portofolio */
+#portofolio .container {
+    padding: 80px 10px;
+}
+/* end portofolio */
+
+/* footer */
+footer h6 span {
+    color: var(--acsentColor);
+}
+
+footer h6{
+    color: white;
+}
+/* end footer */
