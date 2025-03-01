@@ -4,11 +4,23 @@
     --acsentColor : #FF9100;
 }
 
+*,body,html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* overflow-x: hidden; Mencegah horizontal scroll */
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: var(--mainColor);
     min-height: 900px;
     font-family: sans-serif;  
-    scroll-behavior: smooth;
 }
 
 section h1 {
@@ -16,27 +28,44 @@ section h1 {
     font-size: 2.5rem;
 }
 
-.row {
-    
-}
+
+
 
 /* nav */
-
-
-.nav-link.active {
+.navbar .nav-link.active {
+    color: var(--acsentColor)!important; /* Warna kuning atau sesuaikan */
+    font-weight: bold;
+    border-bottom: 2px solid #ffcc00;
+  }
+  
+/* .nav-link.active {
     color: var(--acsentColor) !important;
     font-weight: 700;
-}
+} */
 
 .nav-dark {
     background-color: var(--secondaryColor)!important;
     z-index: 100;
     transition: .3s;
 }
+
+#nav .navbar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#nav .navbar-brand h5 {
+    margin-top: 9px;
+}
+
+#navbarNavDropdown {
+    justify-content: flex-end !important;
+}
 /* end nav */
 
-/* hero */
 
+/* hero */
 .color-acsent {
     color: var(--acsentColor);
 }
@@ -59,10 +88,10 @@ section h1 {
     font-weight: 300;
 }
 
-#hero img {
+/* #hero img { */
     /* position: absolute; */
     /* z-index: -200; */
-}
+/* } */
 
 .btn-custom1 {
     background-color: var(--acsentColor);
@@ -82,8 +111,17 @@ section h1 {
     font-weight: 300;
 }
 
+.social-icon {
+    transition: 1s ease-in-out;
+}
+
+.social-icon a:hover {
+    color: var(--acsentColor);
+    cursor: pointer;
+}
+
 .social-icon .bi {
-    font-size: 20px;
+    font-size: 22px;
     margin-right: .7rem;
 }
 
@@ -111,14 +149,16 @@ hr {
     color: white;
     padding-top: 80px;
     padding-bottom: 80px;
-    margin-bottom: 80px;
+    /* margin-bottom: 80px; */
+    
 }
 /* end about */
 
 
 /* sklil */
  #skill {
-    min-height: 600px;
+    /* min-height: 600px; */
+    margin: 2rem 0;
     width: 100%;
     color: white;
  }
@@ -127,8 +167,6 @@ hr {
     width: 15%;
     margin: 10px;
  }
-
-
 
  #skill .card {
     background-color: #414558;
@@ -140,9 +178,7 @@ hr {
     background-color: var(--acsentColor);
  }
 
- .skill-content {
-    margin-top: 120px;
- }
+
 
  .skill-content .image {
     width: 90% !important;
@@ -153,13 +189,53 @@ hr {
     font-size: 50px;
     width: 50%;
  }
+
+ #skill .hobi {
+    text-align: justify;
+ }
+
+ /* Container untuk progress */
+/* Progress container */
+#skill .progress-container {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px; /* Spasi antara progress bars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Label di atas progress bar */
+  #skill .progress-label {
+    position: relative;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255, 255, 255); /* Warna teks */
+  }
+  
+  /* Progress bar */
+  #skill .progress-bar {
+    background-color: var(--acsentColor);
+    border-radius: 5px;
+    height: 20px;
+    width: 0; /* Awalnya 0 */
+    transition: width 1.5s ease-out; /* Animasi lebar */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
 /* end sklil */
 
 
 /* sertifikat */
 #sertifikat {
-    margin-top: -170px;
-    padding-top: 270px;
+    /* margin-top: -170px; */
+    /* padding-top: 270px; */
+    padding-top: 80px;
     padding-bottom: 80px;
     background-color: var(--secondaryColor);
 }
@@ -176,6 +252,8 @@ hr {
 #sertifikat img {
     width: 49%;
     padding: 10px;
+    background-color: white;
+    border-radius: 5px;
 }
 /* end sertifikat */
 
@@ -184,14 +262,200 @@ hr {
 #portofolio .container {
     padding: 80px 10px;
 }
+
+#portofolio .folder-body img{
+    width: 100%;
+    max-height: 250px;
+    aspect-ratio: 1/1;
+}
+
+
+        /* folder_shape */
+        #folder_shape {
+            /* background-color: aqua; */
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        #folder_shape .container-fluid{
+            display: flex;
+            justify-content: center;
+        }
+        
+        #folder_shape .folder-body {
+            /* height: 250px; */
+            width: 500px;
+            padding: 5px 5px;
+            border-radius: 10px;
+            gap: 2px;
+            background-color: orange;
+        }
+        
+        #folder_shape .folder-top{
+            z-index: -999;
+            height: 80px;
+            width: 250px;
+            display: flex;
+            margin-top: -35px;
+            margin-left: -5px;
+            position: absolute;
+            border-radius: 10px;
+            justify-content: start;
+            background-color: orange;
+        }
+        
+        #folder_shape .folder-top label {
+            margin-top:5px;
+            font-weight: 900;
+            margin-left: 10px;
+            text-align: center;
+            
+        }
+        /* folder_shape */
 /* end portofolio */
 
 /* footer */
-footer h6 span {
-    color: var(--acsentColor);
-}
 
-footer h6{
-    color: white;
-}
+/* Footer */
+    footer {
+        color: white;
+        /* background-color: var(--secondaryColor); */
+    }
+
+    footer h6 span {
+        color: var(--acsentColor);        
+    }
+    footer h6 span a {
+        color: var(--acsentColor);        
+    }
+    footer h6 span a img {
+        color: var(--acsentColor);        
+        width: 25%;
+    }
+
+    footer .body-content {
+        /* background-color: var(--secondaryColor); */
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    footer .dropdown .btn {
+        width: 100%;
+        /* background-color: red !important; */
+    }
+    footer .dropdown-menu1 {
+        width: 350px;
+    }
+    footer .dropdown-menu1 .support a img {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: block;
+        margin-left: auto;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    footer .support {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+
+    footer .dropdown-menu2 {
+        background-color: transparent !important;
+    }
+
+    footer .fast-link a{
+        transition: 0.1s ease-in-out;
+    }
+    footer .fast-link a:hover{
+        transform: scale(1);
+        color: var(--acsentColor);
+    }
+
+    footer .date-time .date, .time {
+        font-size: 18px;
+        margin: 10px 0;
+        display: flex;
+        /* text-align: center; */
+        color: white !important;
+      }
+    footer .date-time #waktu {
+        margin-right: 10px;
+      }
+
+    footer .date-time .bi {
+        margin-right: 10px;
+    }
+
+    footer .social-icon-footer .bi{
+        transition: 0.1s ease-in-out;
+    }
+    footer .social-icon-footer .bi:hover{
+        transform: scale(1);
+        color: var(--acsentColor);
+        cursor: pointer;
+    }        
+    
+
+
+
+
+    footer span {
+        color: red;
+        font-size: 13px;
+    }
+
+    footer .img-logo {
+        width: 20%;
+    }
+
+    footer .logo-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    footer .container-fluid{
+        background-color: var(--footer);
+        color: white;
+        padding: 20px 20px;
+      }
+  
+      footer a{
+        text-decoration: none;
+        color: white;
+      }
+  
+      footer .link .bi, .kontak .bi {
+        color: #007bff;
+      }
+  
+      footer li {
+        list-style-type: none;
+        font-size: 16px;
+      }
+  
+      footer .kontak {
+        display: flex;
+        justify-content: start;
+      }
+  
+      footer .kontak .bi {
+        font-size: 23px;
+      }
+  
+      footer .col-4 {
+        display: flex;
+        justify-content: center;
+      }
+  
 /* end footer */

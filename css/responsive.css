@@ -55,6 +55,12 @@
         padding-right: 30px !important;
         margin-top: 20px;
      }
+
+    /* footer */
+    footer .row{
+        display: flex;
+    }
+    /* footer */     
 }
 
 /* lanskep mobile */
@@ -87,6 +93,37 @@
         z-index: 1000;
     }
 
+    /* skill */
+    #skill img {
+        width: 25%;
+        margin: 10px;
+        }
+
+        .skill-content .image {
+        width: 100% !important;
+        /* max-width: 300px !important; */
+        }
+
+    /* skill */
+
+    /* footer */
+    footer .dropdown-menu1 {
+        width: 100%;
+    }
+
+    footer .dropdown-menu1 .support a img {
+        width: 50% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: block;
+        margin-left: auto;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    /* footer */
+    
+
 
 }
 
@@ -95,6 +132,7 @@
     #portofolio .col-md-12 {
         flex-direction: column;
     }
+
 
 
 }
