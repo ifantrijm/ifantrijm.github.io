@@ -12,7 +12,7 @@
     user-select: none;
     /* pointer-events: none; */
     cursor: default;
-    /* overflow-x: hidden; Mencegah horizontal scroll */
+    overflow-x: hidden; 
 }
 
 .row {
