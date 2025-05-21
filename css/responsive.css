@@ -1,0 +1,177 @@
+/* dekstop */
+@media screen and (max-width : 1200px) {
+    #hero p {
+        font-size: .9rem;  
+    }
+
+    #hero h1 {
+        font-size: 2.3rem;
+    }
+}
+
+/* tablet */
+@media screen and (max-width : 768px) {
+    .nav {
+        position: absolute;
+        z-index: 2000;
+    }
+
+    #hero {
+        padding-top: 50px;
+    }
+
+    #hero img {
+        width: 75%;
+    }
+
+    #hero .row {
+        padding-bottom: 75px;
+    }
+    
+    .social-icon {
+        left: 50%;
+        transform: translate(-50%);
+    }
+    
+    .btn-custom1 {
+        width: 80%;
+    }
+
+    #about p {
+        text-align: justify !important;
+    }
+
+    #skill .card h3 {
+        font-size: 1.3rem;
+    }
+
+    .skill-content .image {
+        width: 50% !important;
+        /* max-width: 300px !important; */
+     }
+
+     #skill .card {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        margin-top: 20px;
+     }
+
+    /* footer */
+    footer .row{
+        display: flex;
+    }
+    
+    /* footer */     
+}
+
+/* lanskep mobile */
+@media screen and (max-width : 576px) {
+    hr {
+        width: 75%;
+    }
+
+    h1 {
+        font-size: 2rem !important;
+    }
+
+    footer img {
+        width: 75px !important;
+    }
+
+    footer p {
+        font-family: .8rem;
+    }
+
+    #skill .skill-content {
+        /* background-color: rgb(21, 255, 0) !important; */
+        display: block;
+        margin-left: auto;
+        margin-right: auto ;
+     }
+
+     
+    #nav {
+        z-index: 1000;
+    }
+
+    /* skill */
+    #skill img {
+        width: 25%;
+        margin: 10px;
+        }
+
+        .skill-content .image {
+        width: 100% !important;
+        /* max-width: 300px !important; */
+        }
+
+    /* skill */
+
+    /* magang */
+    #magang {
+        padding: 0px 0px;
+        /* background-color: red; */
+    }
+
+    #magang .judul h1 {
+        font-size: 28px;
+    }    
+
+    #magang .sub_judul h5 {
+        text-align: ;
+        font-size: 16px;
+    }
+    
+    #magang .sub_judul p, li {
+        font-size: 14px;
+    }
+
+    #magang .about_magang{
+        margin-top: 10px !important;
+    }
+    #magang {
+
+    }
+    #magang {
+
+    }
+    #magang {
+
+    }
+    /* magang */
+
+    /* footer */
+
+    footer .footer-about .social-icon{
+        display: none;
+    }
+
+    footer .dropdown-menu1 {
+        width: 100%;
+    }
+
+    footer .dropdown-menu1 .support a img {
+        width: 50% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: block;
+        margin-left: auto;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    /* footer */
+    
+
+
+}
+
+/* mobile */
+@media screen and (max-width : 350px) {
+    #portofolio .col-md-12 {
+        flex-direction: column;
+    }
+
+
+
+}
