@@ -179,6 +179,7 @@ hr {
     /* padding: 20px; */
     /* height: 300px; */
     border-radius: 5px;
+    margin: 4rem;
     border: none;
     display: flex;
     align-items: center;
@@ -236,13 +237,7 @@ hr {
 
 }
 @media (max-width: 505px){
-    .wrapper{
-        /* max-width: 500px; */
-        /* padding: ; */
-    }
-    .wrapper .card {
-        /* width: 100%; */
-    }
+
 }
 /* progress-skill */
 

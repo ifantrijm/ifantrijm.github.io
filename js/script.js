@@ -327,17 +327,17 @@ updateTime();
 // pesan dan kesan======================================
 
     // Nonaktifkan klik kanan
-    // document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('contextmenu', e => e.preventDefault());
     
-    // // Nonaktifkan shortcut keyboard
-    // document.addEventListener('keydown', function(e) {
-    //   if (
-    //     e.keyCode === 123 || // F12
-    //     (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
-    //     (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
-    //     (e.ctrlKey && e.keyCode === 83)    // Ctrl+S
-    //   ) {
-    //     e.preventDefault();
-    //   }
-    // });
+    // Nonaktifkan shortcut keyboard
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+        (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+        (e.ctrlKey && e.keyCode === 83)    // Ctrl+S
+      ) {
+        e.preventDefault();
+      }
+    });
     // Nonaktifkan klik kanan
