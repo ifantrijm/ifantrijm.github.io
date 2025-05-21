@@ -216,9 +216,9 @@ updateTime();
 
                     const showDelete = lastId && timeSaved && (now - timeSaved < 5000); // 5 detik
 
-                    data.forEach(item => {
+                    data.reverse().forEach(item => {
                         const col = document.createElement('div');
-                        col.className = 'col-md-4 col-6 d-flex g-3 justify-content-center align-items-center box-coment';
+                        col.className = 'col-md-4  d-flex g-3 justify-content-center align-items-center box-coment';
 
                         const span = document.createElement('span');
                         span.className = 'form-control output-comment';
@@ -327,17 +327,17 @@ updateTime();
 // pesan dan kesan======================================
 
     // Nonaktifkan klik kanan
-    document.addEventListener('contextmenu', e => e.preventDefault());
+    // document.addEventListener('contextmenu', e => e.preventDefault());
     
-    // Nonaktifkan shortcut keyboard
-    document.addEventListener('keydown', function(e) {
-      if (
-        e.keyCode === 123 || // F12
-        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
-        (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
-        (e.ctrlKey && e.keyCode === 83)    // Ctrl+S
-      ) {
-        e.preventDefault();
-      }
-    });
+    // // Nonaktifkan shortcut keyboard
+    // document.addEventListener('keydown', function(e) {
+    //   if (
+    //     e.keyCode === 123 || // F12
+    //     (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+    //     (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+    //     (e.ctrlKey && e.keyCode === 83)    // Ctrl+S
+    //   ) {
+    //     e.preventDefault();
+    //   }
+    // });
     // Nonaktifkan klik kanan

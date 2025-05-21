@@ -12,7 +12,6 @@
     user-select: none;
     /* pointer-events: none; */
     cursor: default;
-    overflow-x: hidden; 
 }
 
 .row {
@@ -24,6 +23,7 @@ body {
     background-color: var(--mainColor);
     min-height: 900px;
     font-family: sans-serif;  
+    overflow-x: hidden;
 }
 
 section h1 {
@@ -176,14 +176,15 @@ hr {
 .wrapper .card {
     background-color: transparent;
     width: calc(23% - 20px);
-    /* width: 200px; */
-    height: 300px;
+    /* padding: 20px; */
+    /* height: 300px; */
     border-radius: 5px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    /* background-color: aqua; */
     /* box-shadow: 0px 10px 15px rgba(0,0,0,0.1); */
 }
 .wrapper .card .circle{
@@ -232,21 +233,15 @@ hr {
     text-align: center;
 }
 @media (max-width: 768px){
-    .wrapper{
-        max-width: 700px;
-    }
-    .wrapper .card {
-        width: calc(50% - 20px);
-        margin-bottom: 20px;
-    }
+
 }
 @media (max-width: 505px){
     .wrapper{
-        max-width: 500px;
+        /* max-width: 500px; */
+        /* padding: ; */
     }
     .wrapper .card {
-        width: 100%;
-
+        /* width: 100%; */
     }
 }
 /* progress-skill */
@@ -285,6 +280,11 @@ hr {
     background-color: var(--mainColor);
 }
 
+#magang img {
+    width: 100%;
+    /* height: 300px; */
+}
+
 #magang .container {
     padding: 20px;
     border-radius: 9px;
@@ -293,7 +293,7 @@ hr {
 }
 
 #magang p,ul,li{
-    text-align: justify;
+    text-align: lef;
 }
 /* end magang */
 
@@ -306,13 +306,12 @@ hr {
 
 #portofolio .folder-body img{
     width: 100%;
-    max-height: 250px;
-    aspect-ratio: 1/1;
+    /* max-height: 250px; */
+    /* aspect-ratio: 1/1; */
 }
 
 #folder_shape {
     /* background-color: aqua; */
-    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -367,33 +366,38 @@ hr {
          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* bayangan lembut */
          border: 1px solid rgba(0, 0, 0, 0.1);      /* garis tepi samar */
       }
-
       #comment-form .box-coment, .output-comment {
        position: relative;
       }
-
-
       #comment-form #delete font{
          position: absolute;
          bottom: 30px;
          right: 10px;
       }
-
       #comment-form .delete {
        border: none;
        background: none ;
       }
-
       #comment-form .scrool-vertikal {
        overflow-y: scroll;
       }
       #comment-form .scrool-vertikal::-webkit-scrollbar {
          display: none;
       }
-
       #comment-form .row .scroll-height {
          max-height: 200px;
          height: 300px;
+      }
+       #comment-form .row .scroll-height .info-add{
+        margin-top: -10px;
+        margin-left: 245px;
+      }
+      #comment-form .sticky-top{
+        border: none;
+        border-radius: none;        
+      }
+      #comment-form .box-comment{
+        margin-top: -25px;    
       }
       /* commeent */
 
@@ -428,7 +432,6 @@ hr {
         border-radius: 8px;
         transition: all 0.3s ease;
       }
-
       #comment-form .char-counterNama.exceeded {
         color: red;
         font-weight: bold;
