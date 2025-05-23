@@ -38,7 +38,7 @@ section h1 {
 .navbar .nav-link.active {
     color: var(--acsentColor)!important; /* Warna kuning atau sesuaikan */
     font-weight: bold;
-    border-bottom: 2px solid #ffcc00;
+    /* border-bottom: 2px solid #ffcc00; */
   }
   
 /* .nav-link.active {
@@ -179,7 +179,7 @@ hr {
     /* padding: 20px; */
     /* height: 300px; */
     border-radius: 5px;
-    margin: 4rem;
+    margin: 5rem;
     border: none;
     display: flex;
     align-items: center;
@@ -194,6 +194,8 @@ hr {
     width: 150px;
     border-radius: 50%;
     cursor: default;
+    box-shadow: 0 1px 10px #FF9100; /* bayangan lembut */
+    /* border: 1px solid #FF9100;  */
 }
 .card .circle .box,
 .card .circle .box span{
@@ -237,7 +239,13 @@ hr {
 
 }
 @media (max-width: 505px){
-
+    .wrapper{
+        /* max-width: 500px; */
+        /* padding: ; */
+    }
+    .wrapper .card {
+        /* width: 100%; */
+    }
 }
 /* progress-skill */
 
@@ -438,6 +446,38 @@ hr {
         transform: scale(1.1);
       }
        /* char-counter */
+
+       /* delete data form spreadsheet */
+        #form_del .container {box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 10px; overflow-x: scroll;}
+        #form_del .container::-webkit-scrollbar {display: none;}
+        #form_del table {width: 100%; border-radius: 10px;}
+
+        #form_del th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        #form_del button { background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+       /* delete data form spreadsheet */
+
+        /* vrivikasi top */
+      .overlay {
+        position: fixed; /* Mengatur posisi tetap */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Hitam transparan */
+        z-index: 999; /* Pastikan di atas konten lainnya */
+      }
+
+      .otp-form {
+        position: fixed; /* Mengatur posisi tetap */
+        top: 50%; /* Pusat vertikal */
+        left: 50%; /* Pusat horizontal */
+        transform: translate(-50%, -50%); /* Menggeser ke tengah */
+        background-color: white; /* Latar belakang putih untuk form */
+        padding: 20px; /* Ruang di dalam form */
+        border-radius: 5px; /* Sudut membulat */
+        z-index: 1000; /* Pastikan di atas overlay */
+      }
+      /* vrivikasi top */
 /* endpesan dan kesan */
 
 /* Footer */

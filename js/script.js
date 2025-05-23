@@ -158,18 +158,18 @@ updateTime();
             $(this).parent().find("span").text(String(stepValue.toFixed(2).substr(2)) + "%");
         });
 
-        $(".office .bar").circleProgress({value: 0.80});
+        $(".1 .bar").circleProgress({value: 0.75});
 
-        $(".html .bar").circleProgress({value: 0.70});
+        $(".2 .bar").circleProgress({value: 0.70});
 
-        $(".js .bar").circleProgress({value: 0.20});
+        $(".3 .bar").circleProgress({value: 0.65});
 
-        $(".php .bar").circleProgress({value: 0.60});
+        $(".4 .bar").circleProgress({value: 0.85});
 // progress bar======================================
 
 
 // pesan dan kesan======================================
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyS--KLeGJWhoElcAfG3d8qhyYYuDlgOxLPudwYOmqanVnGiQ5ecwoMweORoE9DVRIu/exec'
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwMXv7gUUzAk0fKzwc_6hGOJyhxNM9HM5oFfAZ9JV2sHn06wFPoxmvVG7wqJz9hWF_M/exec'
         const form = document.forms['coment_user']
         const btnKirim = document.querySelector('.btn-kirim');
         const btnLoading = document.querySelector('.btn-loading');
@@ -323,8 +323,52 @@ updateTime();
         // end char-counter
 
         window.addEventListener('load', tampilkanKomentar);
+      // pesan dan kesan======================================
 
-// pesan dan kesan======================================
+
+        // verifikasi
+        function showOTPForm() {
+          document.getElementById('otpForm').style.display = 'block';
+          document.getElementById('overlay').style.display = 'block'; // Tampilkan overlay
+        }
+
+        function hideOTPForm() {
+          document.getElementById('otpForm').style.display = 'none'; // Sembunyikan form OTP
+          document.getElementById('overlay').style.display = 'none'; // Sembunyikan overlay
+        }
+
+        function cekOTP() {
+          const otp = document.getElementById('otpInput').value;
+          const btnVeri = document.querySelector('.btn-veri');
+            const btnLoadingVeri = document.querySelector('.btn-loadingVeri');
+
+              // Periksa apakah elemen ditemukan
+            if (!btnVeri || !btnLoadingVeri) {
+                console.error('Tombol verifikasi atau loading tidak ditemukan.');
+                return; // Keluar dari fungsi jika elemen tidak ditemukan
+            }
+            // Sembunyikan tombol verifikasi dan tampilkan tombol loading
+            btnVeri.classList.add('d-none');
+            btnLoadingVeri.classList.remove('d-none');
+
+          fetch('https://script.google.com/macros/s/AKfycbwMXv7gUUzAk0fKzwc_6hGOJyhxNM9HM5oFfAZ9JV2sHn06wFPoxmvVG7wqJz9hWF_M/exec?action=checkOTP&otp=' + encodeURIComponent(otp))
+            .then(res => res.json())
+            .then(data => {
+              console.log(data); // Periksa respons dari server
+              btnVeri.classList.remove('d-none');
+              btnLoadingVeri.classList.add('d-none');
+
+
+              if (data.status === 'success') {
+                console.log('Pengalihan ke form_v7_delete.html'); // Log sebelum pengalihan
+                window.location.href = 'deleteData.html';
+                // window.open('form_v7_delete.html', '_blank');
+              } else {
+                alert('OTP salah');
+              }
+            })
+        }
+        // verifikasi
 
     // Nonaktifkan klik kanan
     document.addEventListener('contextmenu', e => e.preventDefault());
