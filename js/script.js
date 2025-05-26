@@ -169,7 +169,7 @@ updateTime();
 
 
 // pesan dan kesan======================================
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwMXv7gUUzAk0fKzwc_6hGOJyhxNM9HM5oFfAZ9JV2sHn06wFPoxmvVG7wqJz9hWF_M/exec'
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz3A_CKzgJh1W4K6ITKXM1NVHPCuZYrx8xVNN-tIjM2Q38N4hiTG2Snk3YY_JwiVuZU/exec'
         const form = document.forms['coment_user']
         const btnKirim = document.querySelector('.btn-kirim');
         const btnLoading = document.querySelector('.btn-loading');
@@ -221,7 +221,7 @@ updateTime();
                         col.className = 'col-md-4  d-flex g-3 justify-content-center align-items-center box-coment';
 
                         const span = document.createElement('span');
-                        span.className = 'form-control output-comment';
+                        span.className = 'form-control output-comment h-100';
                         span.id = 'comment-list-container';
                         span.innerHTML = `
                           <label class="fw-bold col-6-fs-1 text-uppercase text-break"> ${item.nama}:</label>
@@ -351,7 +351,7 @@ updateTime();
             btnVeri.classList.add('d-none');
             btnLoadingVeri.classList.remove('d-none');
 
-          fetch('https://script.google.com/macros/s/AKfycbwMXv7gUUzAk0fKzwc_6hGOJyhxNM9HM5oFfAZ9JV2sHn06wFPoxmvVG7wqJz9hWF_M/exec?action=checkOTP&otp=' + encodeURIComponent(otp))
+          fetch('https://script.google.com/macros/s/AKfycbz3A_CKzgJh1W4K6ITKXM1NVHPCuZYrx8xVNN-tIjM2Q38N4hiTG2Snk3YY_JwiVuZU/exec?action=checkOTP&otp=' + encodeURIComponent(otp))
             .then(res => res.json())
             .then(data => {
               console.log(data); // Periksa respons dari server
