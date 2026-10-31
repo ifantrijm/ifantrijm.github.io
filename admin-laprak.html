@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Laprak</title>
+    <link rel="stylesheet" href="bootstrap-5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        :root {
+            --mainColor: #252734;
+            --secondaryColor: #333646;
+            --acsentColor: #FF9100;
+        }
+        body { background-color: var(--mainColor); color: white; }
+        .card-custom { background-color: var(--secondaryColor); border: none; border-radius: 12px; }
+        .table-dark-custom { --bs-table-bg: var(--secondaryColor); --bs-table-color: white; border-color: var(--mainColor); }
+        .btn-custom1 { background-color: var(--acsentColor); color: white; font-weight: bold; }
+        .btn-custom1:hover { background-color: #e68200; color: white; }
+        .form-control { background-color: #1c1e27; border: 1px solid #4a4d5e; color: white; }
+        .form-control:focus { background-color: #1c1e27; border-color: var(--acsentColor); color: white; box-shadow: none; }
+    </style>
+</head>
+<body class="py-5">
+<div class="container">
+    <h2 class="fw-bold text-center mb-5">Dashboard <span style="color: var(--acsentColor);">Manajemen Laprak</span></h2>
+    
+    <div class="row g-4">
+        <!-- FORM UPLOAD / EDIT -->
+        <div class="col-lg-4">
+            <div class="card card-custom p-4 shadow">
+                <h5 class="fw-bold mb-4" id="form-title">Upload Laprak Baru</h5>
+                <form id="form-laprak">
+                    <input type="hidden" id="laprak-id">
+                    <input type="hidden" id="form-action" value="create">
+
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Judul Praktikum</label>
+                        <input type="text" id="judul-laprak" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Keterangan Singkat</label>
+                        <textarea id="ket-laprak" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Tanggal Pengerjaan</label>
+                        <input type="date" id="tgl-laprak" class="form-control" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-secondary">File (Abaikan jika edit tanpa ubah file)</label>
+                        <input type="file" id="file-laprak" class="form-control">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-custom1 w-100 mb-2" id="btn-submit">
+                        <i class="bi bi-cloud-upload"></i> Simpan Data
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary w-100 d-none" id="btn-cancel" onclick="resetForm()">
+                        Batal Edit
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- TABEL DATA LAPRAK -->
+        <div class="col-lg-8">
+            <div class="card card-custom p-4 shadow">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold m-0 text-white">Daftar Laporan Praktikum</h5>
+                    <button class="btn btn-sm btn-outline-light" onclick="loadTableData()"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-dark-custom table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Judul</th>
+                                <th>Tanggal</th>
+                                <th>File</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr><td colspan="4" class="text-center">Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // URL WEB APP KAMU
+    const urlAPI = 'https://script.google.com/macros/s/AKfycbxTEmZSsC9gwotguFmtxSLeEey0a1DVEpmYgvpaHkp-k9JLfMlZj490C_NgDzsDZd3R/exec';
+
+    // 1. SISTEM KEAMANAN (Ambil Password & Lempar kalau belum login)
+    const passAktif = sessionStorage.getItem("tiketAdmin");
+    if (!passAktif) {
+        window.location.replace("index.html");
+    }
+
+    function logoutAdmin() {
+        sessionStorage.removeItem("tiketAdmin");
+        window.location.replace("index.html");
+    }
+
+    // 2. Load Data Tabel
+    function loadTableData() {
+        document.getElementById('table-body').innerHTML = '<tr><td colspan="4" class="text-center">Memuat data... <div class="spinner-border spinner-border-sm text-warning"></div></td></tr>';
+        
+        fetch(urlAPI, { method: 'GET', redirect: 'follow' })
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+            
+            if(data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">Belum ada data.</td></tr>';
+                return;
+            }
+
+            data.reverse().forEach(row => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="fw-bold">${row.judul}</td>
+                        <td>${row.tanggal}</td>
+                        <td><a href="${row.url}" target="_blank" class="btn btn-sm btn-info text-white"><i class="bi bi-eye"></i></a></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-warning me-1" onclick="editData('${row.id}', '${row.judul}', '${row.keterangan}', '${row.tanggal}')"><i class="bi bi-pencil-square"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteData('${row.id}')"><i class="bi bi-trash3"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+    }
+
+    // 3. Eksekusi Form (Create / Update)
+    document.getElementById("form-laprak").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const action = document.getElementById("form-action").value;
+        const fileInput = document.getElementById("file-laprak").files[0];
+        const btn = document.getElementById("btn-submit");
+        
+        if (action === "create" && !fileInput) {
+            return Swal.fire("Peringatan", "Harap pilih file untuk diupload!", "warning");
+        }
+        
+        Swal.fire({
+            title: 'Menyimpan Data...',
+            text: 'Tunggu sebentar, jangan tutup halaman ini.',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
+        btn.disabled = true;
+
+        const payload = {
+            action: action,
+            pass: passAktif, // <-- VARIABEL PASSWORD DIMASUKKAN KE SINI
+            id: document.getElementById("laprak-id").value,
+            judul: document.getElementById("judul-laprak").value,
+            keterangan: document.getElementById("ket-laprak").value,
+            tanggal: document.getElementById("tgl-laprak").value
+        };
+
+        if (fileInput) {
+            const reader = new FileReader();
+            reader.readAsDataURL(fileInput);
+            reader.onload = function() {
+                payload.fileName = fileInput.name;
+                payload.mimeType = fileInput.type;
+                payload.fileBase64 = reader.result;
+                sendRequest(payload, btn);
+            };
+        } else {
+            sendRequest(payload, btn);
+        }
+    });
+
+    // 4. Kirim Data ke Server
+    function sendRequest(payload, btn) {
+        fetch(urlAPI, { method: "POST", body: JSON.stringify(payload) })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === "success") {
+                Swal.fire("Berhasil!", data.message, "success");
+                resetForm();
+                loadTableData();
+            } else {
+                Swal.fire("Error!", data.message, "error");
+            }
+        })
+        .catch(error => {
+            Swal.fire("Error!", "Terjadi kesalahan jaringan.", "error");
+            console.error(error);
+        })
+        .finally(() => btn.disabled = false);
+    }
+
+    // 5. Persiapan Mode Edit
+    function editData(id, judul, ket, tgl) {
+        document.getElementById("form-title").innerText = "Edit Laprak";
+        document.getElementById("form-title").style.color = "var(--acsentColor)";
+        document.getElementById("form-action").value = "update";
+        document.getElementById("laprak-id").value = id;
+        
+        document.getElementById("judul-laprak").value = judul;
+        document.getElementById("ket-laprak").value = ket;
+        document.getElementById("tgl-laprak").value = tgl;
+        
+        document.getElementById("btn-submit").innerHTML = '<i class="bi bi-save"></i> Perbarui Data';
+        document.getElementById("btn-cancel").classList.remove("d-none");
+    }
+
+    // 6. Reset Form ke Mode Create
+    function resetForm() {
+        document.getElementById("form-laprak").reset();
+        document.getElementById("form-title").innerText = "Upload Laprak Baru";
+        document.getElementById("form-title").style.color = "white";
+        document.getElementById("form-action").value = "create";
+        document.getElementById("laprak-id").value = "";
+        
+        document.getElementById("btn-submit").innerHTML = '<i class="bi bi-cloud-upload"></i> Simpan Data';
+        document.getElementById("btn-cancel").classList.add("d-none");
+        document.getElementById("tgl-laprak").value = new Date().toISOString().split('T')[0];
+    }
+
+    // 7. Hapus Data
+    function deleteData(id) {
+        Swal.fire({
+            title: 'Yakin hapus laprak ini?',
+            text: "Data akan dihapus dari database portofolio!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, Hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({ title: 'Menghapus...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+                
+                fetch(urlAPI, { 
+                    method: "POST", 
+                    body: JSON.stringify({ action: "delete", id: id, pass: passAktif }) // <-- VARIABEL PASSWORD DI SINI
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.status === "success") {
+                        Swal.fire("Terhapus!", data.message, "success");
+                        loadTableData();
+                    } else {
+                        Swal.fire("Error", data.message, "error");
+                    }
+                })
+                .catch(error => {
+                    Swal.fire("Error", "Gagal menghapus data jaringan.", "error");
+                    console.error(error);
+                });
+            }
+        });
+    }
+
+    // 8. Init awal
+    window.addEventListener('load', () => {
+        resetForm();
+        loadTableData();
+    });
+</script>
+</body>
+</html>

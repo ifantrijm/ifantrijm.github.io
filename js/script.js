@@ -385,3 +385,93 @@ updateTime();
       }
     });
     // Nonaktifkan klik kanan
+
+
+
+    // GANTI DENGAN URL WEB APP TERBARU KAMU
+const urlAPI = 'https://script.google.com/macros/s/AKfycbxTEmZSsC9gwotguFmtxSLeEey0a1DVEpmYgvpaHkp-k9JLfMlZj490C_NgDzsDZd3R/exec';
+
+
+// === FITUR 1: RENDER DATA & FORMAT TANGGAL ===
+function loadLaprak() {
+    fetch(urlAPI, { method: 'GET', redirect: 'follow' })
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('laprak-list');
+        document.getElementById('loading-laprak').style.display = 'none'; 
+        container.innerHTML = '';
+        
+        if (data.length === 0) return container.innerHTML = '<div class="col-12 text-center text-white"><p>Belum ada Laporan Praktikum.</p></div>';
+
+        data.reverse().forEach(laprak => {
+            const isPDF = laprak.tipe.includes('pdf');
+            const icon = isPDF ? 'bi-file-earmark-pdf-fill text-danger' : 'bi-file-earmark-excel-fill text-success';
+            
+            // Format Tanggal jadi rapi (Misal: 31 Oktober 2026)
+            const dateObj = new Date(laprak.tanggal);
+            const tglRapi = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+            
+            container.innerHTML += `
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="card w-100 shadow" style="background-color: var(--mainColor); border-top: 4px solid var(--acsentColor); border-radius: 10px;">
+                        <div class="card-body d-flex flex-column text-white p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi ${icon} fs-1 me-3"></i>
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1" style="color: var(--acsentColor);">${laprak.judul}</h5>
+                                    <small class="text-muted"><i class="bi bi-calendar-check me-1"></i> ${tglRapi}</small>
+                                </div>
+                            </div>
+                            <p class="card-text text-secondary mb-4" style="font-size: 0.95rem;">${laprak.keterangan}</p>
+                            <a href="${laprak.url}" target="_blank" class="btn btn-custom1 mt-auto rounded-pill w-100 py-2">
+                                Baca Dokumen <i class="bi bi-box-arrow-up-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }).catch(err => document.getElementById('loading-laprak').innerHTML = '<h5 class="text-danger">Gagal memuat data.</h5>');
+}
+window.addEventListener('load', loadLaprak);
+
+// === FITUR 2: TOMBOL RAHASIA (KLIK 5 KALI) ===
+let clickCount = 0;
+const secretTrigger = document.getElementById('secret-trigger');
+
+if (secretTrigger) {
+    secretTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        clickCount++;
+        
+        setTimeout(() => { clickCount = 0; }, 2000);
+
+        if (clickCount === 5) {
+            clickCount = 0; // Reset
+            
+            Swal.fire({
+                title: 'Akses Ruang Admin',
+                text: 'Masukkan kode keamanan',
+                input: 'password',
+                inputPlaceholder: 'Password...',
+                icon: 'lock',
+                showCancelButton: true,
+                confirmButtonColor: 'var(--acsentColor)',
+                confirmButtonText: 'Masuk'
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    
+                    // PENGECEKAN INSTAN DI BROWSER (0 Detik Loading)                 
+
+                    if (btoa(result.value) === "bXlsYXByYWs=") {
+                        sessionStorage.setItem("tiketAdmin", result.value);
+                        window.location.href = "admin-laprak.html";
+                    } else {
+                        Swal.fire("Ditolak!", "Siapa kamu? Password salah!", "error");
+                    }
+                                        
+                }
+            });
+        }
+    });
+}

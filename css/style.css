@@ -628,3 +628,60 @@ hr {
       }
   
 /* end footer */
+
+
+/* --- DARK THEME OVERRIDES UNTUK PESAN & KESAN --- */
+
+/* Input Form Gelap */
+#comment-form .form-control-dark {
+    background-color: var(--mainColor);
+    border: 1px solid #4a4d5e;
+    color: white;
+}
+#comment-form .form-control-dark:focus {
+    background-color: var(--mainColor);
+    border-color: var(--acsentColor);
+    color: white;
+    box-shadow: none;
+}
+#comment-form .form-control-dark::placeholder {
+    color: #8c8f9e;
+}
+
+/* Background Char Counter Gelap */
+#comment-form .char-counterNama,
+#comment-form .char-counterPesan {
+    background: var(--secondaryColor);
+    color: #aeb1c2;
+    border: 1px solid #4a4d5e;
+}
+
+/* Kotak Komentar (Bubble) Gelap */
+#comment-form .output-comment {
+    background-color: var(--mainColor) !important;
+    color: white !important;
+    border: 1px solid #4a4d5e !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    border-radius: 10px;
+}
+
+/* Penyesuaian label nama di komentar */
+#comment-form .output-comment label {
+    color: var(--acsentColor);
+}
+
+/* Scrollbar Custom untuk Kotak Komentar */
+#comment-form .scrool-vertikal::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+}
+#comment-form .scrool-vertikal::-webkit-scrollbar-track {
+    background: var(--secondaryColor);
+}
+#comment-form .scrool-vertikal::-webkit-scrollbar-thumb {
+    background: #4a4d5e;
+    border-radius: 10px;
+}
+#comment-form .scrool-vertikal::-webkit-scrollbar-thumb:hover {
+    background: var(--acsentColor);
+}

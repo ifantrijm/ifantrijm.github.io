@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My || Protofolio</title>
+    <title>My || Portofolio</title>
     <link rel="stylesheet" href="bootstrap-5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsive.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="website icon" type="png" href="img/logo (6).png">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
 </head>
@@ -20,15 +21,15 @@
       <div class="container-fluid position-fixed" id="nav">
         <div class="container" >
           <nav class="navbar navbar-expand-lg navbar-dark py-3">
-            <a class="navbar-brand" href="#">
-              <img src="img/logo (6).png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-              <h5>Portfolio</h5>
+            <a class="navbar-brand" href="#" id="secret-trigger">
+                <img src="img/logo (6).png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+                <h5>Portfolio</h5>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse o" id="navbarNavDropdown">
-              <ul class="navbar-nav ms-aut">
+              <ul class="navbar-nav my-auto">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#home">Beranda</a>
                 </li>
@@ -280,7 +281,7 @@
           </div>
 
           <div class="col-md-6 g-4">
-            <section id="folder_shape">
+            <section id="folder_shape">n
               <div class="container-fluid panel">
                   <div class="folder-body">
                       <div class="folder-top"><label for=""><h5>ProTani Web</h5></label></div>
@@ -294,68 +295,99 @@
     </section>
     <!-- end portofolio -->
 
-    <!-- pesan dan kesan -->
-    <section id="comment-form" class="p-3">
-      <div class="container alert alert-info ">
+    <section id="arsip-laprak" class="py-5" style="background-color: var(--secondaryColor);">
+    <div class="container">
+        <div class="row judul justify-content-center mb-5">
+            <div class="col-12 text-center">
+                <h1 class="fw-bold text-white">Arsip Laporan Praktikum</h1>
+                <hr>
+            </div>
+        </div>
+        
+        <!-- Loading Spinner Modern -->
+        <div class="text-center text-white" id="loading-laprak">
+            <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h5 class="mt-3">Mengambil data arsip...</h5>
+        </div>
+
+        <div class="row g-4" id="laprak-list"></div>
+    </div>
+</section>
+
+<!-- pesan dan kesan -->
+    <section id="comment-form" class="py-5" style="background-color: var(--mainColor);">
+      <div class="container p-4 shadow-lg" style="background-color: var(--secondaryColor); border-radius: 15px;">
         <div class="row">
-          <div class="col-md-3 mb-3 justify-content-center g-1 scroll-height mt-3 mb-1">
-            <h5 class="text-center fw-bold">Pesan Kesan Anda </h5>
+          
+          <!-- Form Kolom Kiri -->
+        <div class="col-md-3">
+            <h5 class="text-center fw-bold text-white mb-4">Pesan Kesan Anda</h5>
               <form action="" name="coment_user">
-                <div class="position-wrapper">
-                  <input type="text" class="form-control mb-1"  name="nama" placeholder="Nama" id="nama" maxlength="10" required>
+                <div class="position-wrapper mb-3">
+                  <input type="text" class="form-control form-control-dark" name="nama" placeholder="Nama Anda" id="nama" maxlength="10" required>
                   <div id="charCounterNama" class="char-counterNama">0/10</div>                  
                 </div>
-                <div class="position-wrapper">
-                  <textarea class="form-control " rows="2"  name="pesan" placeholder="Pesan" id="pesan" maxlength="30" required></textarea>
+                <div class="position-wrapper mb-3">
+                  <textarea class="form-control form-control-dark" rows="3" name="pesan" placeholder="Tulis pesan..." id="pesan" maxlength="30" required></textarea>
                   <div id="charCounterPesan" class="char-counterPesan">0/30</div>   
-                  <h6 class="ms-1 text-danger fw-bold mt-1" style="font-size: 15px;">Nb* Bijaklah dalam berkata</h6>
+                  <h6 class="ms-1 fw-bold mt-2" style="font-size: 13px; color: var(--acsentColor);">*Nb: Bijaklah dalam berkata</h6>
                 </div>                
-                <div class="">
-                  <button class=" form-control btn btn-primary btn-kirim" type="submit">Kirim</button>
-                  <button class=" form-control btn btn-primary btn-loading d-none" type="button" disabled>
-                  <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                  <span role="status">Loading...</span>
+                <div>
+                  <button class="btn btn-custom1 w-100 btn-kirim" type="submit">
+                    <i class="bi bi-send-fill me-1"></i> Kirim
+                  </button>
+                  <button class="btn btn-custom1 w-100 btn-loading d-none" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    <span role="status">Loading...</span>
                   </button>
                 </div>
               </form>
           </div>
-          <div class="col-md-9 scroll-height scrool-vertikal parent-div"  style=" overflow-y: auto; position: relative;">
-            <nav class="sticky-top alert alert-info p-1 z-1">
-              <div class="mt-3 d-flex justify-content-center align-items-center">
-                <h5 class="text-center">Survei Membuktikan</h5>                
-                <button onclick="showOTPForm()" class="position-absolute d-none  translate-middle bg-danger badge rounded-pill  info-add  admin" style="border: none;">1+</button>
-                    <div class="form-veri ">  
+
+          <!-- Output Kolom Kanan -->
+          <div class="col-md-9 scroll-height scrool-vertikal parent-div" style="overflow-y: auto; position: relative;">
+            
+            <!-- Sticky Header Kotak Komentar -->
+            <nav class="sticky-top p-2 z-1 shadow-sm" style="background-color: var(--secondaryColor); border-radius: 10px;">
+              <div class="mt-2 d-flex justify-content-center align-items-center">
+                <h5 class="text-center fw-bold text-white m-0">Feedback Pengunjung</h5>                
+                
+                <button onclick="showOTPForm()" class="position-absolute d-none translate-middle bg-danger badge rounded-pill info-add admin" style="border: none;">1+</button>
+                    
+                <div class="form-veri">  
                     <!-- Latar belakang transparan untuk form OTP -->
                     <div id="overlay" class="overlay" style="display: none;" onclick="hideOTPForm()"></div>
                     
                     <!-- Form OTP (disembunyikan dulu) -->
-                    <div id="otpForm" class="otp-form" style="display: none;">
-                      <div class="row">
-                        <div class="col-md-6 g-2 ">
-                          <input type="password" id="otpInput" placeholder="Masukkan OTP" class="form-control" style=" display: inline-block;">
+                    <div id="otpForm" class="otp-form shadow-lg" style="display: none; background-color: var(--secondaryColor); border: 1px solid var(--acsentColor);">
+                      <div class="row g-2">
+                        <div class="col-md-7">
+                          <input type="password" id="otpInput" placeholder="Masukkan OTP" class="form-control form-control-dark">
                         </div>
-                        <div class="col-md-6 g-2">
-                          <button onclick="cekOTP()" class=" form-control btn btn-primary btn-veri">Verifikasi</button>
-                          <button class="form-control  btn btn-primary btn-loadingVeri d-none" type="button" disabled>
-                          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                          <span role="status">Loading...</span>
+                        <div class="col-md-5">
+                          <button onclick="cekOTP()" class="btn btn-custom1 w-100 btn-veri">Verifikasi</button>
+                          <button class="btn btn-custom1 w-100 btn-loadingVeri d-none" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                          </button>
                         </div>
                       </div>
-                      </button>
                     </div>
                   </div>
               </div>              
             </nav>              
+            
             <div class="box-comment p-3">
-              <div id="comment" style="margin-top: -13px;">
-                  <div id="comment-list" class="row"></div>
+              <div id="comment" style="margin-top: -10px;">
+                  <div id="comment-list" class="row g-3"></div>
               </div>
-            </div>    
+            </div>  
           </div>
         </div>
       </div>
     </section>
-    <!-- end pesan dan kesan -->
+<!-- end pesan dan kesan -->
 
     <!-- footer -->
     <footer id="footer">
